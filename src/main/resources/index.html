@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>IPDLogs v3</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/default.css">
+        <script language="javascript" type="text/javascript">  
+        function setSearch(the_value) {
+            var textbox = document.getElementById('host_search');
+            textbox.value = the_value;
+            location.href = "#table_hosts";
+            var evt = document.createEvent("HTMLEvents");
+            evt.initEvent("change", false, true);
+            textbox.dispatchEvent(evt);
+            
+        }
+        function clearGroups() {
+            var textbox = document.getElementById('group_search');
+            textbox.value = "";
+            var evt = document.createEvent("HTMLEvents");
+            evt.initEvent("change", false, true);
+            textbox.dispatchEvent(evt);
+        }
+        function clearHosts() {
+            var textbox = document.getElementById('host_search');
+            textbox.value = "";
+            var evt = document.createEvent("HTMLEvents");
+            evt.initEvent("change", false, true);
+            textbox.dispatchEvent(evt);
+        }
+        //(function(document) {
+        //    'use strict';
+            
+            var LightTableFilter = (function(Arr) {
+                var _input;
+                function _onInputEvent(e) {
+                    _input = e.target;
+                    var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+                    Arr.forEach.call(tables, function(table) {Arr.forEach.call(table.tBodies, function(tbody) {Arr.forEach.call(tbody.rows, _filter);});});
+                }
+                function _filter(row) {
+                    //alert('on2');
+                    var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase(); row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+                }
+                return {
+                    init: function () {
+                        //alert('on3');
+                        var inputs = document.getElementsByClassName('light-table-filter'); Arr.forEach.call(inputs, function (input) {input.oninput = _onInputEvent;input.onchange = _onInputEvent;});
+                    }
+                };
+            })(Array.prototype);
+            document.addEventListener('readystatechange', function () {if (document.readyState === 'complete') { LightTableFilter.init();}});
+        //})(document);
+        </script>
+    </head>
+    <body>
+        <!--div id="header">
+            #parse( "_header.html" )
+        </div-->
+        <div id="left">
+            #parse( "_left.html" )
+        </div>
+        <div id="main" style="overflow:scroll">
+            <table border="0" id="table_top"><tr><td></td><td><a href="#table_groups">Groups</a></td><td><a href="#table_hosts">Hosts</a></td></tr></table>
+            <br><br>
+            #if ($groups)
+            <table border="0" id="table_groups"><tr><td><h1>Groups</h1></td><td><a href="#table_top">Top</a></td><td><a href="#table_hosts">Hosts</a></td></tr></table>
+            <input type="search" id="group_search" class="light-table-filter" data-table="table_groups" placeholder="Gruppe?" />
+            <input type='button' onclick="clearGroups()" value='Clear'>
+            <table border="1" class="table_groups table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Group Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    #foreach ($group in $groups)
+                    <tr>
+                        <td><a href='javascript:void(0)' onclick='setSearch("${group.groupname}")'>${group.groupid}</a></td>
+                        <td><a href='javascript:void(0)' onclick='setSearch("${group.groupname}")'>${group.groupname}</a></td>
+                        <td><a href='javascript:void(0)' onclick='setSearch("${group.groupname}")'>${group.groupdesc}</a></td>
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+            #end
+            <br><br>
+            #if ($hosts)
+            <table border="0" id="table_hosts"><tr><td><h1>Hosts</h1></td><td><a href="#table_top">Top</a></td><td><a href="#table_groups">Groups</a></td></tr></table>
+            <input type="search" id="host_search" class="light-table-filter" data-table="table_hosts" placeholder="Hostname?" />
+            <input type='button' onclick="clearHosts()" value='Clear'>
+            <table border="1" class="table_hosts table">
+                <tr>
+                    <thead>
+                        <th>ID</th>
+                        <th>Hostname</th>
+                        <th>Description</th>
+                        <th>Groups</th>
+                    </thead>
+                </tr>
+                #foreach ($host in $hosts)
+                <tr>
+                    <td><a href='/host/${host.hostname}/dirs'>${host.hostid}</a></td>
+                    <td><a href='/host/${host.hostname}/dirs'>${host.hostname}</a></td>
+                    <td><a href='/host/${host.hostname}/dirs'>${host.hostdesc}</a></td>
+                    <td><a href='/host/${host.hostname}/dirs'>${host.groups}</a></td>
+                </tr>
+                #end
+            </table>
+            #end
+
+        </div>
+    </body>
+</html>
+

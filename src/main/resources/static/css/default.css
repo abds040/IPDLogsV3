@@ -1,0 +1,140 @@
+/*****GENERAL******/
+* {
+margin:0;
+paddisng:3;
+}
+
+html, body {
+	height:100%;
+}
+
+#wrapper {
+	min-height:90%;
+	min-width:800px;
+	position:relative;
+}
+#header {
+	background:#FFFFFF;
+	color: #000000;
+	font-weight:bold;
+	padding-left:10px;
+	position:absolute;
+    left:0;  top: 0px; height:0px; width:100%;
+}
+#header h1
+{
+	position: absolute;
+	top: 2px;
+	font-size: 2.0em;
+	letter-spacing: -0.02em;
+	padding-left:0.02em;
+}
+#header_end {
+	background:#FF0000;
+	color: white;
+	font-weight:bold;
+	padding-left:0px;
+	position:absolute;
+    left:0;  top: 21px; height:4px; width:100%;
+}
+#menu
+{
+    background:#FFFFFF;
+	position:absolute;
+    left:156px;  top: 25px; height:25px; width:100%;
+	font-weight: bold;
+	padding-top: 5px;
+    padding-left: 15px;
+	padding-bottom: 5px;
+	font-size: 0.9em;
+	aborder-top: 1px solid white;
+	aborder-bottom: 1px solid white;
+}
+#menu ul
+{
+	list-style: none;
+	position: absolute;
+	left: 186px;
+	amargin-left: 142px;
+	display: inline;
+}
+#menu li
+{
+	display: inline;
+	padding-left: 10px;
+	margin-left: 10px;
+	border-left: dotted 1px #E0E8EF;
+}
+
+#left {
+	position:absolute;
+    left:0;  top: 0px; width:150px;height:100%;
+	padding: 5px 0 10px 4px;
+	font-size:90%;
+    padding-bottom:2em; /*allows for the footer*/
+    background:#F8F8F8;
+}
+#left a:hover {
+	background-color: #EBCBCB; width:145px
+}
+#left_end {
+	background:#FF0000;
+	color: white;
+	font-weight:bold;
+	padding-left:0px;
+	position:absolute;
+    left:152px;  top: 0px; height:100%; width:1px;
+}
+#main {
+	position:absolute;
+        left:156px;  top: 0px; width:100%; height:100%;
+	padding: 5px 5px;
+	padding-bottom:2em; /*allows for the footer*/
+        background:#FBFBFB;
+}
+
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:76%;
+	text-align:left;
+	color: #333333;
+}
+
+h1 {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #2A4F6F;
+	margin-top: 4px;
+	margin-bottom: 6px;
+}
+
+h2 {
+	font-size: 1em;
+	color: #666666;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+h3 {
+	font-size: 1em;
+	color: #333333;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+a {
+	text-decoration: none;
+	color: #334F6F;
+	font-weight: bold;
+}
+/* table cols for user*/
+.userhead {
+    background-color: #FFEEEE;
+}
+.usereven {
+    background-color: #FFDEDD;
+}
+.userodd {
+    background-color: #FFEDED;
+}

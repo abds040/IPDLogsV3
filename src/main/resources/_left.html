@@ -1,0 +1,19 @@
+    <table cellspacing="5" width="100%">
+            <tr><td>IPDLogs ${version}</td></tr>
+            <tr><td>Userid:${user.userid}</td></tr>
+            <tr><td>Admin:${admin}</td></tr>
+            <tr><td></td></tr>
+            #if (${admin} == "true" )
+            <tr><td><!--img src="images/image_red.gif" height="1" width="100%"--></td></tr>
+            <tr><td>Admin: </td></tr>
+            <tr><td> </td></tr>
+            <tr><td><a href="<%=de.wwag.ipdlogsv2.tools.Constants.ADMINADDGROUP%>">Add Group</a></td></tr>
+            <tr><td><a href="<%=de.wwag.ipdlogsv2.tools.Constants.ADMINADDHOST%>">Add Host</a></td></tr>
+            <tr><td><a href="<%=de.wwag.ipdlogsv2.tools.Constants.ADMINADDDIR%>">Add Directory</a></td></tr>
+            <tr><td> </td></tr>
+            #end
+            <tr><td><!--img src="images/image_red.gif" height="1" width="100%"--></td></tr>
+            <tr><td> </td></tr>
+            <tr><td>Kontakt: </td></tr>
+            <tr><td><a href="mailto:mw-admins@ww-informatik.de?subject=IPDLogs">MW-Admins</a></td></tr>
+    </table>

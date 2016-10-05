@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>${hello}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/default.css">
+    </head>
+    <body>
+        <!--div id="header">
+            #parse( "_header.html" )
+        </div-->
+        <div id="left">
+            #parse( "_left.html" )
+        </div>
+        <div id="main" style="overflow:scroll">
+             <BR>Path: <a href='/'>Home</a> --> ${hostname} : $dirlist.size() Directories</BR>
+             <br>
+            <table border="1">
+                <TR>
+                    <!-- $group.groupid -->
+                    <TH>Directory Name</TH>
+                    <TH>Directory Desc</TH>
+                </TR>
+                #set( $count = 1 ) 
+                #foreach( $dir in $dirlist )
+                <TR>
+                    <!-- $group.groupid -->
+                    <TD><a href='/host/${dir.dirhostname}/dir/$dir.dirid'>$dir.dirname</a></TD>
+                    <TD>$dir.dirdesc</TD>
+                    #if (${admin} == "true" )
+                    <TD>EDIT Dir</TD>
+                    <TD>Delete Dir</TD>
+                    #end
+                </TR>
+                #set( $count = $count + 1 )
+                #end
+            </table>
+
+        </div>
+    </body>
+</html>
+

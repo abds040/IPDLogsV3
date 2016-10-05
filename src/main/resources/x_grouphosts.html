@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>IPDLogs v3</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/default.css">
+    </head>
+    <body>
+        <div id="header">
+            #parse( "_header.html" )
+        </div>
+        <div id="left">
+            #parse( "_left.html" )
+        </div>
+        <div id="main">
+             <B>$user.hostlist.size() Host</B>
+            <table border="1">
+                <TR>
+                    <!--
+                     String hostid   = rs.getString("hostid");
+                String hostname = rs.getString("hostname");
+                String hostdesc = rs.getString("hostdesc");
+                String hostuser = rs.getString("hostuser");
+                String hostpass = rs.getString("hostpass");
+                String downloadtype = rs.getString("downloadtype");
+
+                    -->
+                    <!-- $group.groupid -->
+                    <TH>Hostname</TH>
+                    <TH>Hostdesc</TH>
+                    <TH>Groups</TH>
+                </TR>
+                #set( $count = 1 ) 
+                #foreach( $host in $user.hostlist )
+                <TR>
+                    <!-- $group.groupid -->
+                    <TD><a href='/host/$host.hostid/dirs'>$host.hostname</a></TD>
+                    <TD>$host.hostdesc</TD>
+                    <TD>$host.groups</TD>
+                    #if (${admin} == "true" )
+                    <TD>EDIT Host</TD>
+                    <TD>Delete Host</TD>
+                    #end
+                </TR>
+                #set( $count = $count + 1 )
+                #end
+            </table>
+
+        </div>
+    </body>
+</html>
+

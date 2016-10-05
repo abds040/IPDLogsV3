@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>${hello}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/default.css">
+        <script language="javascript" type="text/javascript">  
+        function clearFiles() {
+            var textbox = document.getElementById('files_search');
+            textbox.value = "";
+            var evt = document.createEvent("HTMLEvents");
+            evt.initEvent("change", false, true);
+            textbox.dispatchEvent(evt);
+        }
+        (function(document) {
+            'use strict';
+            var LightTableFilter = (function(Arr) {
+                var _input;
+                function _onInputEvent(e) {
+                    _input = e.target;
+                    var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+                    Arr.forEach.call(tables, function(table) {Arr.forEach.call(table.tBodies, function(tbody) {Arr.forEach.call(tbody.rows, _filter);});});
+                }
+                function _filter(row) {
+                    var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase(); row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+                }
+                return {
+                    init: function () {
+                        var inputs = document.getElementsByClassName('light-table-filter'); Arr.forEach.call(inputs, function (input) {input.oninput = _onInputEvent;input.onchange = _onInputEvent;});
+                    }
+                };
+            })(Array.prototype);
+            document.addEventListener('readystatechange', function () {if (document.readyState === 'complete') {LightTableFilter.init();}});
+        })(document);
+        </script>
+    </head>
+    <body>
+        <!--div id="header">
+            #parse( "_header.html" )
+        </div-->
+        <div id="left">
+            #parse( "_left.html" )
+        </div>
+        <div id="main" style="overflow:scroll">
+            <BR>Path: <a href='/'>Home</a> --> <a href='/host/${hostname}/dirs'>${hostname}</a> --> ${dirname} : $filelist.size() Files</BR>
+            <br></br>
+            <input type="search" id="files_search" class="light-table-filter" data-table="table_files" placeholder="Filename?" />
+            <input type='button' onclick="clearFiles()" value='Clear'>
+            <table border="1" class="table_files table">
+                <thead>
+                <TR>
+                    <!-- $group.groupid -->
+                    <TH>Type</TH>
+                    <TH>File Name</TH>
+                    <TH>Size</TH>
+                    <TH>Extras</TH>
+                </TR>
+                </thead>
+                #set( $count = 1 ) 
+                #foreach( $file in $filelist )
+                <TR>
+                    <!-- $group.groupid -->
+                    #if (${file.directory} == "true")
+                    <TD>DIR</TD>
+                    #else
+                    <TD>FILE</TD>
+                    #end
+                    <TD>$file.fileName</TD>
+                    <TD>$file.size</TD>
+                    <TD><a href='/host/$hostname/type/text/file/$dirname/$file.fileName' target="${hostname}_text_$dirname_$file.fileName">Text</a></TD>
+                    <TD><a href='/host/$hostname/type/html/file/$dirname/$file.fileName' target="${hostname}_text_$dirname_$file.fileName">Html</a></TD>
+                    #if (${admin} == "true" )
+                    <TD>EDIT Dir</TD>
+                    <TD>Delete Dir</TD>
+                    #end
+                </TR>
+                #set( $count = $count + 1 )
+                #end
+            </table>
+
+        </div>
+    </body>
+</html>
+
